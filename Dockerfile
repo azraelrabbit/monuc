@@ -3,11 +3,14 @@ FROM centos:centos6
 
 MAINTAINER azraelrabbit <azraelrabbit@gmail.com>
 
+#install perrequired
+RUN yum install -y wget tar sudo 
+
 #add mono-opt source
 WORKDIR /etc/yum.repos.d
 
 RUN wget http://download.opensuse.org/repositories/home:tpokorra:mono/CentOS_CentOS-6/home:tpokorra:mono.repo
-RUN yum install -y wget tar sudo openssh-server mono-*opt
+RUN yum install -y openssh-server mono-*opt
 
 RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 RUN mkdir -p /var/run/sshd
